@@ -1,4 +1,4 @@
-#!/Users/emily/Code/MakersProjects/personal_diary/diary_venv/bin/python3
+#!/Users/emily/Code/MakersProjects/personal_diary/diary_venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

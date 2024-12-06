@@ -1,4 +1,3 @@
-import pytest
 from lib.reading_time import *
 
 def test_reading_time():

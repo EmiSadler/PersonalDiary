@@ -1,4 +1,3 @@
-import pytest
 from lib.grammar import *
 
 def test_capitals():
