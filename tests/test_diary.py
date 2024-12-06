@@ -69,3 +69,12 @@ def test_short_reading_chunk():
     assert result == "time for"
     result = diary_entry.reading_chunk(wpm, minutes)
     assert result == "an afternoon"
+
+def test_reading_more_text():
+    title = "Monday 3pm"
+    content = "Post nap and ready to return to my job as a code Monkey"
+    wpm = 14
+    minutes = 1
+    diary_entry = DiaryEntry(title, content)
+    result = diary_entry.reading_chunk(wpm, minutes)
+    assert result == "Post nap and ready to return to my job as a code Monkey"
