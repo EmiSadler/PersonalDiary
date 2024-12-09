@@ -5,32 +5,36 @@ class Diary:
         self.list_of_entries = []
 
     def add(self, entry):
+        self.list_of_entries.append(entry)
         # Parameters:
         #   entry: an instance of DiaryEntry
         # Returns:
         #   Nothing
         # Side-effects:
         #   Adds the entry to the entries list
-        pass
 
     def all(self):
+        return self.list_of_entries
         # Returns:
         #   A list of instances of DiaryEntry
-        pass
 
     def count_words(self):
         words = 0
-        for entry in list_of_entries:
+        for entry in self.list_of_entries:
             words_per_entry = DiaryEntry.count_words(entry)
             words += words_per_entry
+        return words
 
         # Returns:
         #   An integer representing the number of words in all diary entries
         # HINT:
         #   This method should make use of the `count_words` method on DiaryEntry.
-        pass
+    
 
     def reading_time(self, wpm):
+        total_words = Diary.count_words(self)
+        time_in_minutes = total_words / wpm
+        return time_in_minutes
         # Parameters:
         #   wpm: an integer representing the number of words the user can read
         #        per minute
@@ -40,6 +44,16 @@ class Diary:
         pass
 
     def find_best_entry_for_reading_time(self, wpm, minutes):
+        time_to_read = wpm * minutes
+        best_entry = None
+        closest_time = 0
+        for entry in self.list_of_entries:
+            entry_time = entry.reading_time(wpm)
+            if entry_time <= time_to_read and entry_time > closest_time:
+                closest_time = entry_time
+                best_entry = entry
+        return best_entry
+            
         # Parameters:
         #   wpm:     an integer representing the number of words the user can
         #            read per minute
@@ -63,8 +77,12 @@ class DiaryEntry:
         self.title = title
         self.contents = contents
         self.read_so_far = 0
+        self.total_time = 0
         # Side-effects:
         #   Sets the title and contents properties
+
+    def __repr__(self):
+        return f"Title: {self.title}, Contents: {self.contents}"
         
 
     def count_words(self):
@@ -83,8 +101,8 @@ class DiaryEntry:
             raise Exception("WPM must be greater than 0")
         else:
             total_words = self.count_words() 
-            total_time = total_words / wpm
-            return total_time
+            self.total_time = total_words / wpm
+            return self.total_time
         
         # Parameters:
         #   wpm: an integer representing the number of words the user can read
