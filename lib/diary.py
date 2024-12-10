@@ -1,3 +1,4 @@
+
 # File: lib/diary.py
 
 class Diary:
